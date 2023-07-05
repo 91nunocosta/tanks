@@ -1,0 +1,56 @@
+[tool.poetry]
+name = "tanks"
+version = "0.1.0"
+description = "tanks"
+authors = ["Nuno Costa <91nunocosta@gmail.com>"]
+readme = "README.md"
+repository = "https://github.com/91nunocosta/tanks/"
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+fastapi = "^0.99.1"
+uvicorn = {extras = ["standard"], version = "^0.22.0"}
+sqlmodel = "^0.0.8"
+psycopg2 = "^2.9.6"
+[tool.poetry.group.lint]
+optional = true
+
+[tool.poetry.group.lint.dependencies]
+pre-commit = "^2.15.0"
+mypy = "^1.0.0"
+pylint = "^2.16.1"
+types-python-dateutil = "^2.8.19.13"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.2.1"
+pytest-cov = "^3.0.0"
+httpx = "^0.24.1"
+python-dateutil = "^2.8.2"
+freezegun = "^1.2.2"
+
+[tool.poetry.group.tox]
+optional = true
+
+[tool.poetry.group.tox.dependencies]
+tox = "^3.24.4"
+
+
+[tool.poetry.group.migrations.dependencies]
+alembic = "^1.11.1"
+sqlmodel = "^0.0.8"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+[tool.pylint]
+max-line-length = 88
+disable = "missing-module-docstring,missing-class-docstring,missing-function-docstring,too-many-arguments,too-many-instance-attributes"
+
+[tool.pylint.'MESSAGES CONTROL']
+extension-pkg-whitelist = "pydantic"
+
+
+[tool.pylint.SIMILARITIES]
+min-similarity-lines=5
