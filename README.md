@@ -1,5 +1,9 @@
 # Tanks
 
+[![Linting](https://github.com/91nunocosta/tanks/actions/workflows/lint.yml/badge.svg)](https://github.com/91nunocosta/tanks/actions/workflows/lint.yml)
+[![Tests](https://github.com/91nunocosta/tanks/actions/workflows/test.yml/badge.svg)](https://github.com/91nunocosta/tanks/actions/workflows/test.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/edce9d4ddf75589404dc/maintainability)](https://codeclimate.com/github/91nunocosta/tanks/maintainability)
+
 ## Trying out
 
 1. Clone the repository:
