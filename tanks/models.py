@@ -15,5 +15,13 @@ class TankVolume(SQLModel, BaseTankVolume, table=True):
     created_at: datetime.datetime = Field(index=True)
 
 
-class Thank(SQLModel, table=True):
+class AverageSale(SQLModel, table=True):
     id: int | None = Field(primary_key=True)
+    tank_id: int = Field(foreign_key=Tank.id)
+    date: datetime.date
+    sales: int
+    total: float
+
+    @property
+    def average(self) -> float:
+        return self.total / self.sales

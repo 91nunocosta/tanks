@@ -1,3 +1,5 @@
+from typing import Callable, TypeVar
+
 from fastapi.testclient import TestClient
 from pytest import MonkeyPatch, fixture
 from sqlmodel import Session, SQLModel, create_engine
@@ -21,6 +23,27 @@ def session_fixture(database_url: str):
     )
     SQLModel.metadata.create_all(engine)
     return Session(engine)
+
+
+T = TypeVar("T", bound=SQLModel)
+
+CreateDBRowsFunction = Callable[[T], list[T]]
+
+
+@fixture(name="create_db_rows")
+def create_db_rows_fixture(session: Session) -> CreateDBRowsFunction:
+    def create_db_rows(*instances: T) -> list[T]:
+        for instance in instances:
+            session.add(instance)
+
+        session.commit()
+
+        for instance in instances:
+            session.refresh(instance)
+
+        return list(instances)
+
+    return create_db_rows
 
 
 @fixture(name="client")

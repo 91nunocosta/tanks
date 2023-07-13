@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel
 
 
@@ -11,3 +13,9 @@ class BaseTankVolume(BaseModel):
 
 class TankVolumePatch(BaseModel):
     volume: float
+
+
+class Sale(BaseModel):
+    tank_id: int
+    quantity: float
+    created_at: datetime
